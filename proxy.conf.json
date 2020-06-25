@@ -1,0 +1,7 @@
+{
+    "/API_DWH/api/*":{
+        "target":"http://localhost",
+        "secure": true,
+        "changeOrigin":true
+    }
+}

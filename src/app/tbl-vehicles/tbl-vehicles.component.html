@@ -1,0 +1,39 @@
+<app-navigation></app-navigation>
+<div class="container-table">
+    <h1>Maestro de vehículos</h1>
+    <hr>
+    <button class="btn btn-outline-primary btn-md waves-effect btn-filter" (click)="exportData()">Descargar archivo</button>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <th>Placa</th>
+            <th>Clasificación</th>
+            <th>Marca</th>
+            <th>Línea</th>    
+            <th>Modelo</th>            
+            <th>Código chasis</th>       
+            <th>Código motor</th>       
+        </thead>
+        <tbody>
+           <tr *ngFor="let vehicle of lsVehicle | paginate: { itemsPerPage:7, currentPage: p }">
+               <td>{{ vehicle.licensePlate }}</td>
+               <td>{{ vehicle.clasification | titlecase }}</td>
+               <td>{{ vehicle.brand | titlecase }}</td>
+               <td>{{ vehicle.model | titlecase }}</td>
+               <td>{{ vehicle.year }}</td>
+               <td>{{ vehicle.chasisCode }}</td>
+               <td>{{ vehicle.engineCode }}</td>
+           </tr>
+        </tbody>
+      
+    </table>
+    <div class="paginationContainer">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
+
+<div *ngIf="isAwaiting" class="container-img-loading">
+    <div class="divBack">
+        <app-img-loading></app-img-loading>
+    </div>
+</div>

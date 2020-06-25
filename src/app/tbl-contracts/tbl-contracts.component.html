@@ -1,0 +1,39 @@
+<app-navigation></app-navigation>
+<div class="container-table">
+    <h1>Maestro de Contratos</h1>
+    <hr>
+    <button class="btn btn-outline-primary btn-md waves-effect btn-filter" (click)="exportData()">Descargar archivo</button>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <th>Código</th>
+            <th>Cliente</th>
+            <th>Fecha de inicio</th>
+            <th>Fecha de terminación</th>
+            <th>Fecha de renovación</th>
+            <th>Fecha de firma</th>
+            <th>Estado</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let contract of lsContract | paginate: { itemsPerPage:7, currentPage: p }">
+                <td>{{ contract.id }}</td>
+                <td>{{ contract.client.name | titlecase }}</td>
+                <td>{{ contract.startDate | date:'yyyy/MM/dd' }}</td>
+                <td>{{ contract.endingDate | date:'yyyy/MM/dd'  }}</td>
+                <td>{{ contract.renovationDate | date:'yyyy/MM/dd'  }}</td>
+                <td>{{ contract.signatureDate | date:'yyyy/MM/dd'  }}</td>
+                <td>{{ contract.state }}</td>
+            </tr>
+        </tbody>
+      
+    </table>
+    <div class="paginationContainer">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
+
+<div *ngIf="isAwaiting" class="container-img-loading">
+    <div class="divBack">
+        <app-img-loading></app-img-loading>
+    </div>
+</div>

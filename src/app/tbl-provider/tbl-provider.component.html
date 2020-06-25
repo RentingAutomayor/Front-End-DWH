@@ -1,0 +1,24 @@
+<app-navigation></app-navigation>
+<div class="container-table">
+    <h1>Maestro de proveedores</h1>
+    <hr>
+    <button class="btn btn-outline-primary btn-md waves-effect btn-filter" (click)="exportData()">Descargar archivo</button>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <th>Documento</th>
+            <th>Tipo de documento</th>
+            <th>Nombre / Razón social</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let provider of lsProvider | paginate: { itemsPerPage:7, currentPage: p }">
+                <td>{{provider.document}}</td>
+                <td>{{provider.kindOfDociment.description}}</td>
+                <td>{{provider.name | titlecase}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="paginationContainer">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
