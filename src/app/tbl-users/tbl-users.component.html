@@ -1,0 +1,35 @@
+<app-navigation></app-navigation>
+<div class="container-table">
+    <h1>Usuarios</h1>
+    <hr>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <th>Documento</th>
+            <th>Tipo de documento</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Cargo</th>             
+            <th>Ciudad</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of lsUser | paginate: { itemsPerPage:7, currentPage: p } ">
+                <td>{{user.document}}</td>
+                <td>{{user.kindOfDocument.description}}</td>
+                <td>{{user.name | titlecase}}</td>
+                <td>{{user.lastName | titlecase}}</td>
+                <td>{{user.jobTitle.description | titlecase}}</td>               
+                <td>{{user.city.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="paginationContainer">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
+
+<div *ngIf="isAwaiting" class="container-img-loading">
+    <div class="divBack">
+        <app-img-loading></app-img-loading>
+    </div>
+</div>

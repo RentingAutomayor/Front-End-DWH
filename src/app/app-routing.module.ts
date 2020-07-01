@@ -12,6 +12,8 @@ import { TblClientsComponent } from './tbl-clients/tbl-clients.component';
 import { TblProviderComponent } from './tbl-provider/tbl-provider.component';
 import { TblVehiclesComponent } from './tbl-vehicles/tbl-vehicles.component';
 import { TblContractsComponent } from './tbl-contracts/tbl-contracts.component';
+import { TblUsersComponent } from './tbl-users/tbl-users.component';
+import { TblRolesComponent } from './tbl-roles/tbl-roles.component';
 
 const routes: Routes = [
   { path: 'MasterRequests', component: TblRequestsComponent },
@@ -25,6 +27,8 @@ const routes: Routes = [
   { path: 'MasterProvider', component:TblProviderComponent },
   { path: 'MasterVehicles', component:TblVehiclesComponent }, 
   { path: 'MasterContracts', component:TblContractsComponent }, 
+  { path: 'MasterUsers' , component: TblUsersComponent },
+  { path: 'MasterRoles' , component: TblRolesComponent },
   { path: '',   redirectTo: '/Login', pathMatch: 'full' }
 ]
 

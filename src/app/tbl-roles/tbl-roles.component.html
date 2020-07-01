@@ -1,0 +1,57 @@
+<app-navigation></app-navigation>
+<div class="container-table">
+    <h1>Roles y permisos</h1>
+    <hr>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <th>Código</th>
+            <th>Nombre del rol</th>
+            <th>Descripción</th>
+            <th>Permisos</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let role of lsRoles | paginate: { itemsPerPage:7, currentPage: p }">
+                <td>{{role.id}}</td>
+                <td>{{role.name}}</td>
+                <td>{{role.description}}</td>
+                <td><i class="fa fa-cogs btn-action text-info" alt="Configurar permisos" (click)="MarkRole(role);basicModal.show()"></i></td>
+            </tr>
+        </tbody>
+
+    </table>
+    <div class="paginationContainer">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
+
+<div mdbModal  style="overflow-y: auto" #basicModal='mdbModal' id="modalContact" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">x</button>
+                <h4 class="modal-title" id="MyModalLabel">Aignación de permisos</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body" id="content-permission">
+                        <app-tbl-permisssion-by-module #tblPermissionComponent [rolToSetPermission]="rolToSetPermission" [lsPermissionByRol]="permissionByRol"></app-tbl-permisssion-by-module>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Close"
+                    (click)="basicModal.hide()" mdbWavesEffect>Cancelar</button>
+                <button type="button" mdbBtn color="success" class="relative waves-light" mdbWavesEffect
+                    (click)="tblPermissionComponent.SavePermissionByRol()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isAwaiting" class="container-img-loading">
+    <div class="divBack">
+        <app-img-loading></app-img-loading>
+    </div>
+</div>

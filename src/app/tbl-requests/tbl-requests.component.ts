@@ -9,7 +9,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Probability } from '../probability';
 import { State } from '../state';
 import { ResponseApi } from '../responseApi';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-tbl-requests',
@@ -32,7 +32,7 @@ export class TblRequestsComponent implements OnInit {
   deleteIsAllowed: boolean;
   updateRiskIsAllowed: boolean;
   updateOperationsIsAllowed: boolean;
-  exportFileIsAllowed:boolean;
+  exportFileIsAllowed: boolean;
 
   //Filtros
   filterIdIsVisible: boolean;
@@ -52,7 +52,7 @@ export class TblRequestsComponent implements OnInit {
   oLsChildState: State[];
 
   //pagination
-  p:number = 1;
+  p: number = 1;
 
   constructor(
     private requestService: RequestService,
@@ -97,50 +97,50 @@ export class TblRequestsComponent implements OnInit {
     this.userService.getUsersByArea("COMERCIAL").subscribe(lsu => this.oLsUsers = lsu);
     this.oLsParentStates = await this.requestService.getParentStates("TODOS");
     this.oLsChildState = await this.requestService.getStatesByParent(0);
-    
+
 
     console.log(this.userAuth);
 
     if (this.userAuth != undefined) {
       //alert("El usuario si se encentra autenticado");
-      for (let permissionByMod of this.userAuth.rol.permissionByModule) {
+      //for (let permissionByMod of this.userAuth.rol.permissionByModule) {
         //console.log(permissionByMod);
 
-        if (permissionByMod.module.id == ModulesByApp.REQUESTS) {
-          //console.log(permissionByMod.module.name);
-          if (permissionByMod.permission.id == PermissionType.READ) {
-            this.readIsAllowed = true;
-          }
+        // if (permissionByMod.module.id == ModulesByApp.REQUESTS) {
+        //   //console.log(permissionByMod.module.name);
+        //   if (permissionByMod.permission.id == PermissionType.READ) {
+        //     this.readIsAllowed = true;
+        //   }
 
-          if (permissionByMod.permission.id == PermissionType.UPDATE) {
-            this.updateIsAllowed = true;
-          }
+        //   if (permissionByMod.permission.id == PermissionType.UPDATE) {
+        //     this.updateIsAllowed = true;
+        //   }
 
-          if (permissionByMod.permission.id == PermissionType.INSERT) {
-            this.insertIsAllowed = true;
-          }
+        //   if (permissionByMod.permission.id == PermissionType.INSERT) {
+        //     this.insertIsAllowed = true;
+        //   }
 
-          if (permissionByMod.permission.id == PermissionType.DELETE) {
-            this.deleteIsAllowed = true;
-          }
+        //   if (permissionByMod.permission.id == PermissionType.DELETE) {
+        //     this.deleteIsAllowed = true;
+        //   }
 
-          if(permissionByMod.permission.id == PermissionType.EXPORT){
-            this.exportFileIsAllowed = true;
-          }
-        }
+        //   if (permissionByMod.permission.id == PermissionType.EXPORT) {
+        //     this.exportFileIsAllowed = true;
+        //   }
+        // }
 
-        if (permissionByMod.module.id == ModulesByApp.RISKS) {
-          if (permissionByMod.permission.id == PermissionType.UPDATE) {
-            this.updateRiskIsAllowed = true;
-          }
-        }
+        // if (permissionByMod.module.id == ModulesByApp.RISKS) {
+        //   if (permissionByMod.permission.id == PermissionType.UPDATE) {
+        //     this.updateRiskIsAllowed = true;
+        //   }
+        // }
 
-        if (permissionByMod.module.id == ModulesByApp.OPERATIONS) {
-          if (permissionByMod.permission.id == PermissionType.UPDATE) {
-            this.updateOperationsIsAllowed = true;
-          }
-        }
-      }
+        // if (permissionByMod.module.id == ModulesByApp.OPERATIONS) {
+        //   if (permissionByMod.permission.id == PermissionType.UPDATE) {
+        //     this.updateOperationsIsAllowed = true;
+        //   }
+        // }
+      //}
     } else {
       alert("No se encuentra autenticado");
       this.router.navigate(['/Login']);
@@ -154,7 +154,7 @@ export class TblRequestsComponent implements OnInit {
     this.isAwaiting = false;
     console.log(this.lsRequest);
     this.lsRequestTemp = this.lsRequest;
-    
+
   }
 
   async deleteRequest() {
@@ -243,8 +243,8 @@ export class TblRequestsComponent implements OnInit {
       this.lsRequest = this.lsRequestTemp.filter(r => r.id.toString().includes(idRequest));
     } else if (kindOfFilter == 'client') {
       let valueOfClient = this.frmFilter.controls.txtValue.value;
-      
-      this.lsRequest = this.lsRequestTemp.filter(r => r.client.name.toUpperCase().includes(valueOfClient.toUpperCase())|| r.client.document.includes(valueOfClient));
+
+      this.lsRequest = this.lsRequestTemp.filter(r => r.client.name.toUpperCase().includes(valueOfClient.toUpperCase()) || r.client.document.includes(valueOfClient));
     } else if (kindOfFilter == 'probability') {
       let valueOfProbability = this.frmFilter.controls.cmbProbability.value;
       this.lsRequest = this.lsRequestTemp.filter(r => r.probability.id == valueOfProbability);
@@ -269,20 +269,20 @@ export class TblRequestsComponent implements OnInit {
     if (rta.response) {
       let msg = rta.message.split(";");
       alert(msg[0]);
-      let pathFile = msg[1].replace("file:","");
+      let pathFile = msg[1].replace("file:", "");
       console.log(pathFile);
 
-      var reader  = new FileReader();
-      var file = pathFile;     
+      var reader = new FileReader();
+      var file = pathFile;
 
       //window.open(pathFile,"_blank");
     }
   }
 
-  validateLastName(lastname:string):string{
-    if(lastname == null){
+  validateLastName(lastname: string): string {
+    if (lastname == null) {
       return '';
-    }else{
+    } else {
       return lastname;
     }
   }

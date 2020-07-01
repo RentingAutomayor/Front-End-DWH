@@ -1,0 +1,35 @@
+<div class="container-table">
+    <h6>Permisos por módulo para el rol: <b>{{ rolToSetPermission.name }}</b></h6> <br>
+    <form [formGroup]="frmGroupCheck">
+
+
+        <table class="table table-striped">
+            <thead>
+                <th>Modulo</th>
+                <th>Permisos</th>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let permissionByModule of lsPermissionByModule">
+
+                    <td>{{permissionByModule.module.name}}</td> 
+                    <td>
+                        <ul>
+                            <li *ngFor="let permission of permissionByModule.lsPermission">
+                                <input type="checkbox" id="chk_{{permissionByModule.module.id + '_' + permission.id}}">
+                                {{permission.name}}
+
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+
+<div *ngIf="isAwaiting" class="container-img-loading">
+    <div class="divBack">
+        <app-img-loading></app-img-loading>
+    </div>
+</div>

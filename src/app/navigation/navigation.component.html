@@ -1,45 +1,42 @@
 <header>
-    <div class="sidebar-fixed position-fixed">
-
-        <!-- <a class="waves-effect">
-            <img src="../../assets/LogoRenting.jpg" class="img-fluid logo" alt="">
-        </a> -->
-
-        <p><b>Bienvenido/a</b><br>{{ userAuth.name + " " + userAuth.lastName  | titlecase }}</p>
-        
-
+    <div class="sidebar-fixed position-fixed">      
+        <br>
+        <p><b>Bienvenido/a</b><br>{{ userAuth.name + " " + userAuth.lastName  | titlecase }}</p>       
         <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action waves-effect active" id="nav-clients"  (click)="setActive('nav-clients')">
+            <a class="list-group-item list-group-item-action waves-effect" id="nav-clients"  *ngIf="HasPermissionClients" (click)="setActive('nav-clients')">
                 <mdb-icon fas icon="user-tie" class="mr-3"></mdb-icon>Clientes.
             </a> 
             
-            <a class="list-group-item list-group-item-action waves-effect btn-navigation" id="nav-provider" (click)="setActive('nav-provider')">
+            <a class="list-group-item list-group-item-action waves-effect btn-navigation" id="nav-provider" *ngIf="HasPermissionProviders"  (click)="setActive('nav-provider')">
                 <mdb-icon fas icon="address-book" class="mr-3"></mdb-icon>Proveedores.
             </a>
 
-            <a class="list-group-item list-group-item-action waves-effect btn-navigation" id="nav-vehicle" (click)="setActive('nav-vehicle')">
+            <a class="list-group-item list-group-item-action waves-effect btn-navigation" id="nav-vehicle" *ngIf="HasPermissionVehicles"  (click)="setActive('nav-vehicle')">
                 <mdb-icon fas icon="fas fa-car" class="mr-3"></mdb-icon>Vehículos.
             </a>
 
-            <a class="list-group-item list-group-item-action waves-effect btn-navigation" id="nav-contract" (click)="setActive('nav-contract')">
+            <a class="list-group-item list-group-item-action waves-effect btn-navigation" id="nav-contract" *ngIf="HasPermissionContracts"  (click)="setActive('nav-contract')">
                 <mdb-icon fas icon="fas fa-file-contract" class="mr-3"></mdb-icon>Contratos.
             </a>
 
-            <a class="list-group-item list-group-item-action waves-effect btn-navigation" id="nav-requests" routerLink="/MasterRequests" (click)="setActive('nav-requests')">
+            <a class="list-group-item list-group-item-action waves-effect btn-navigation" id="nav-requests" *ngIf="HasPermissionRequests"  (click)="setActive('nav-requests')">
                 <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Solicitudes.
+            </a>   
+            <a class="list-group-item list-group-item-action waves-effect btn-navigation" id="nav-users" *ngIf="HasPermissionUsers"  (click)="setActive('nav-users')">
+                <mdb-icon fas icon="fas fa-users" class="mr-3"></mdb-icon>Usuarios.
             </a>
-           <!-- <a class="list-group-item list-group-item-action waves-effect btn-navigation" id="nav-clients" (click)="setActive('nav-clients')">
-                <mdb-icon fas icon="address-book" class="mr-3"></mdb-icon>Clientes.
-            </a>
-            <a class="list-group-item list-group-item-action waves-effect btn-navigation"  id="nav-users" (click)="setActive('nav-users')">
-                <mdb-icon fas icon="user-cog" class="mr-3"></mdb-icon>Usuarios.
-            </a>-->
-          
 
+            <a class="list-group-item list-group-item-action waves-effect btn-navigation" id="nav-roles" *ngIf="HasPermissionRolesAndPermissions" (click)="setActive('nav-roles')">
+                <mdb-icon fas icon="fas fa-tools" class="mr-3"></mdb-icon>Roles y permisos.
+            </a>
+                            
             <a class="list-group-item list-group-item-action waves-effect" id="nav-logout"  (click)="setActive('nav-logout')">
                 <mdb-icon fas icon="user-times" class="mr-3"></mdb-icon>Cerrar sesión.
             </a>          
         </div>
+        <a class="waves-effect img-logo">
+            <img src="../../assets/LogoRenting.jpg" class="img-fluid logo" alt="">
+        </a>
     </div>
 
 </header>

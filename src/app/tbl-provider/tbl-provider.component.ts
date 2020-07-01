@@ -14,11 +14,14 @@ export class TblProviderComponent implements OnInit {
   lsProvider: Ally[];
   //pagination
   p: number = 1;
+  isAwaiting: boolean;
 
   constructor(private provideService: ProviderService) { }
 
   async ngOnInit() {
+    this.isAwaiting = true;
     this.lsProvider = await this.provideService.getAllProvider();
+    this.isAwaiting = false;
   }
 
  

@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 /*Importamos las librerias para el manejo de excepciones*/
 import { catchError, map, tap } from 'rxjs/operators';
-import {User} from '../user';
+import { User } from '../user';
 import { Login } from '../login';
 import { ResponseApi } from '../responseApi';
 
@@ -23,73 +23,78 @@ export class UserService {
 
   urlApi = '/API_DWH/api/user';
 
-  oUserSelected:User;
-  oUserAuthenticated:User;
+  oUserSelected: User;
+  oUserAuthenticated: User;
   constructor(private http: HttpClient) { }
 
-  addUser(user:User):Observable<User>{
-  
-    return this.http.post<User>(this.urlApi,user,this.HttpOptions)
-                    .pipe(
-                      tap((usu :User) => console.log('usuario agregado')),
-                      catchError(this.handleError<User>('addUser'))
-                    );
+  addUser(user: User): Observable<User> {
+
+    return this.http.post<User>(this.urlApi, user, this.HttpOptions)
+      .pipe(
+        tap((usu: User) => console.log('usuario agregado')),
+        catchError(this.handleError<User>('addUser'))
+      );
   }
 
-  getAllUsers(): Observable<User[]>{
+  getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.urlApi)
-                    .pipe(
-                      catchError(this.handleError<User[]>('getAllUsers',[]))
-                    );
+      .pipe(
+        catchError(this.handleError<User[]>('getAllUsers', []))
+      );
   }
 
-  getUsersByArea(area_name:string):Observable<User[]>{
-    let urlNew = this.urlApi + "sByArea/get?area_name="+area_name;
+  async getUsers(): Promise<User[]> {
+    var url = this.urlApi + '/Get';
+    return this.http.get<User[]>(url).toPromise();
+  }
+
+  getUsersByArea(area_name: string): Observable<User[]> {
+    let urlNew = this.urlApi + "sByArea/get?area_name=" + area_name;
     console.log(urlNew);
     return this.http.get<User[]>(urlNew)
-                    .pipe(
-                      catchError(this.handleError<User[]>('getUsersByArea',[]))
-                    );
+      .pipe(
+        catchError(this.handleError<User[]>('getUsersByArea', []))
+      );
   }
 
-  setUserSelected(pUser:User){
+  setUserSelected(pUser: User) {
     this.oUserSelected = pUser;
   }
 
-  getUserSelected(){
+  getUserSelected() {
     return this.oUserSelected;
   }
 
-  setUserAuth(user:User){
+  setUserAuth(user: User) {
     this.oUserAuthenticated = user;
-    localStorage.setItem("CurrentUser",JSON.stringify(this.oUserAuthenticated));
+    localStorage.setItem("CurrentUser", JSON.stringify(this.oUserAuthenticated));
   }
 
-  getUserAuth():User{
+  getUserAuth(): User {    
     let objTmp = JSON.parse(localStorage.getItem("CurrentUser"));
-   console.log(objTmp.id);
-    if(objTmp.id == null){
+    //console.log(objTmp.document);
+    if (objTmp.document == null) {
       this.oUserAuthenticated == null;
-    }else{
+    } else {
       this.oUserAuthenticated = JSON.parse(localStorage.getItem("CurrentUser"));
     }
     return this.oUserAuthenticated;
 
   }
 
-  async authUser(login:Login):Promise<ResponseApi>{
+  async authUser(login: Login): Promise<ResponseApi> {
     let urlAuth = this.urlApi + '/authUser';
-    return this.http.post<ResponseApi>(urlAuth,login,this.HttpOptions).toPromise();
+    return this.http.post<ResponseApi>(urlAuth, login, this.HttpOptions).toPromise();
   }
 
 
 
-  private handleError<T> (operation = 'operation',result?:T){
-    return (error:any):Observable<T> => {
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
       console.error(error);
       return of(result as T);
     }
   }
 
-  
+
 }

@@ -22,3 +22,8 @@
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 </div>
+<div *ngIf="isAwaiting" class="container-img-loading">
+    <div class="divBack">
+        <app-img-loading></app-img-loading>
+    </div>
+</div>

@@ -40,7 +40,10 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { TblClientsComponent } from './tbl-clients/tbl-clients.component';
 import { TblProviderComponent } from './tbl-provider/tbl-provider.component';
 import { TblVehiclesComponent } from './tbl-vehicles/tbl-vehicles.component';
-import { TblContractsComponent } from './tbl-contracts/tbl-contracts.component'; // <-- import the module
+import { TblContractsComponent } from './tbl-contracts/tbl-contracts.component';
+import { TblUsersComponent } from './tbl-users/tbl-users.component';
+import { TblRolesComponent } from './tbl-roles/tbl-roles.component';
+import { TblPermisssionByModuleComponent } from './tbl-permisssion-by-module/tbl-permisssion-by-module.component'; // <-- import the module
 
 
 
@@ -71,7 +74,10 @@ import { TblContractsComponent } from './tbl-contracts/tbl-contracts.component';
     TblClientsComponent,
     TblProviderComponent,
     TblVehiclesComponent,
-    TblContractsComponent
+    TblContractsComponent,
+    TblUsersComponent,
+    TblRolesComponent,
+    TblPermisssionByModuleComponent
   ],
   imports: [
     BrowserModule,

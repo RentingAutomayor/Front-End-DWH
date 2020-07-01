@@ -3,6 +3,6 @@ import { Module } from "./module";
 
 export class PermissionByModule{
     id:number;
-    permission:Permission;
+    lsPermission:Permission[];
     module:Module;
 }
