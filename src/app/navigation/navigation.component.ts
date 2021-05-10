@@ -106,57 +106,57 @@ export class NavigationComponent implements OnInit {
   }
 
   navigate(navElement: string) {
-    var pathToNavigate = "";
-    console.log("ruta: " + navElement)
-    switch (navElement) {
-      case 'nav-clients':
-        pathToNavigate = "/MasterClients";
-        break;
-      case 'nav-provider':
-        pathToNavigate = "/MasterProvider";
-        break;
-      case 'nav-vehicle':
-        pathToNavigate = "/MasterVehicles";
-        break;
-      case 'nav-contract':
-        pathToNavigate = "/MasterContracts";
-        break;
-      case 'nav-users':
-        pathToNavigate = "/MasterUsers";
-        break;
-      case 'nav-roles':
-        pathToNavigate = "/MasterRoles";
-        break;
-      case 'nav-requests':
-        pathToNavigate = "/MasterRequests";
-        break;
-    }
+    // var pathToNavigate = "";
+    // console.log("ruta: " + navElement)
+    // switch (navElement) {
+    //   case 'nav-clients':
+    //     pathToNavigate = "/MasterClients";
+    //     break;
+    //   case 'nav-provider':
+    //     pathToNavigate = "/MasterProvider";
+    //     break;
+    //   case 'nav-vehicle':
+    //     pathToNavigate = "/MasterVehicles";
+    //     break;
+    //   case 'nav-contract':
+    //     pathToNavigate = "/MasterContracts";
+    //     break;
+    //   case 'nav-users':
+    //     pathToNavigate = "/MasterUsers";
+    //     break;
+    //   case 'nav-roles':
+    //     pathToNavigate = "/MasterRoles";
+    //     break;
+    //   case 'nav-requests':
+    //     pathToNavigate = "/MasterRequests";
+    //     break;
+    // }
 
-    if (navElement != 'nav-logout') {
-      console.log(pathToNavigate);
-      this.router.navigate([pathToNavigate]);
-    }
+    // if (navElement != 'nav-logout') {
+    //   console.log(pathToNavigate);
+    //   this.router.navigate([pathToNavigate]);
+    // }
   }
 
   setActive(idElement: any) {
-    console.log(idElement);
+  //   console.log(idElement);
 
-    let aBtnNav = document.getElementsByTagName('a');
+  //   let aBtnNav = document.getElementsByTagName('a');
 
-    for (var i = 0; i <= aBtnNav.length; i++) {
-      console.warn("boton de navegación");
-      console.log(aBtnNav[i]);
-    }
+  //   for (var i = 0; i <= aBtnNav.length; i++) {
+  //     console.warn("boton de navegación");
+  //     console.log(aBtnNav[i]);
+  //   }
 
-    let btnNav = document.getElementById(idElement);
-    btnNav.classList.add("active");
+  //   let btnNav = document.getElementById(idElement);
+  //   btnNav.classList.add("active");
 
 
-    if (idElement == "nav-logout") {
-      this.logout();
-    }
+  //   if (idElement == "nav-logout") {
+  //     this.logout();
+  //   }
 
-    this.navigate(idElement);
-  }
+  //   this.navigate(idElement);
+   }
 
 }

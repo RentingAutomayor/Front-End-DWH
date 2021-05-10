@@ -1,28 +1,26 @@
-<div>
-    <table class="table table-striped">
-        <thead>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Cargo</th>
-            <th>Celular</th>
-            <th>Dirección</th>
-            <th>Correo</th>
-            <th>Acciones</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let contact of lsContacts">              
-                <td>{{ contact.name }}</td>
-                <td>{{ contact.lastName }}</td>
-                <td>{{ contact.jobTitle.description }}</td>
-                <td>{{ contact.cellPhone }}</td>
-                <td>{{ contact.adress }}</td>
-                <td>{{ contact.email }}</td>
-                <td>
-                    <!-- <i class="fas fa-info-circle text-info" title="Más información"></i>
-                    <i class="fas fa-edit text-warning" title="Modificar"></i> -->
-                    <i class="fas fa-trash-alt text-danger" (click)="deleteContact(contact)"  title="Eliminar"></i>
-                </td>
-            </tr>
-        </tbody>
-    </table>  
+<div class="overlay">
+    <div class="container-table">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <th>Nombres  y Apellidos</th>                       
+                        <th>Cargo</th>
+                        <th>Celular</th>
+                        <th>Dirección</th>
+                        <th>Correo</th>                        
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let contact of lsContacts">
+                            <td>{{ contact.name +' '+ validateStringNull(contact.lastName) | titlecase}}</td>                            
+                            <td>{{ contact.jobTitle.description | titlecase }}</td>
+                            <td>{{ contact.cellPhone }}</td>
+                            <td>{{ contact.adress | titlecase}}</td>
+                            <td>{{ contact.email | titlecase}}</td>                          
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

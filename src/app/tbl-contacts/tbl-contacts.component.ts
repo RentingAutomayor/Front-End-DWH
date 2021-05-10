@@ -49,6 +49,11 @@ export class TblContactsComponent implements OnInit {
 
     
   }
+  validateStringNull(data:string){
+    if(data == null){
+      return '';
+    }
+  }
 
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     console.log("Funcionó");

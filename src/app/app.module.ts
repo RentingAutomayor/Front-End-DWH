@@ -44,8 +44,8 @@ import { TblContractsComponent } from './tbl-contracts/tbl-contracts.component';
 import { TblUsersComponent } from './tbl-users/tbl-users.component';
 import { TblRolesComponent } from './tbl-roles/tbl-roles.component';
 import { TblPermisssionByModuleComponent } from './tbl-permisssion-by-module/tbl-permisssion-by-module.component'; // <-- import the module
-
-
+/*Esta libreria se añade para corregir el tema de reconocimiento de valores para variabnles de tipo entrada*/
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -86,7 +86,8 @@ import { TblPermisssionByModuleComponent } from './tbl-permisssion-by-module/tbl
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

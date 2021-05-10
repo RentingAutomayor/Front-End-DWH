@@ -2,14 +2,16 @@
 <div class="container-table">
     <h1>Maestro de clientes</h1>
     <hr>
-    <button class="btn btn-outline-primary btn-md waves-effect btn-filter" (click)="exportData()">Descargar archivo</button>
+    <button class="btn btn-outline-primary btn-md waves-effect btn-filter" (click)="exportData()">Descargar
+        archivo</button>
     <hr>
     <table class="table table-striped">
         <thead>
             <th>Documento</th>
             <th>Nombre / Razón social</th>
             <th>Ciudad</th>
-            <th>Actividad económica</th>    
+            <th>Actividad económica</th>
+            <th>Información adicional</th>
         </thead>
         <tbody>
             <tr *ngFor="let client of lsClient | paginate: { itemsPerPage:7, currentPage: p }">
@@ -17,9 +19,13 @@
                 <td>{{client.name | titlecase}}</td>
                 <td>{{client.city.name | titlecase}}</td>
                 <td>{{client.economicActivity.description | titlecase}}</td>
+                <td>
+                    <i></i> <a (click)="contactModal.show();getContactsByClient(client.document)">Contactos</a>
+
+                </td>
             </tr>
         </tbody>
-      
+
     </table>
     <div class="paginationContainer">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
@@ -29,5 +35,30 @@
 <div *ngIf="isAwaiting" class="container-img-loading">
     <div class="divBack">
         <app-img-loading></app-img-loading>
+    </div>
+</div>
+
+
+
+<div mdbModal style="overflow-y: auto" #contactModal='mdbModal' id="modalContact" class="modal fade" tabindex="-1"
+    role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close"
+                    (click)="contactModal.hide()">x</button>
+                <h4 class="modal-title" id="MyModalLabel">Contactos</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-body" id="content-permission">
+                    <app-tbl-contacts [lsContacts]="lsoFContacts"></app-tbl-contacts>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" mdbBtn color="success" class="waves-light" aria-label="Close"
+                    (click)="contactModal.hide()" mdbWavesEffect>Aceptar</button>
+                
+            </div>
+        </div>
     </div>
 </div>

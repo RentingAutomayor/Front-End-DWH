@@ -1,8 +1,10 @@
 <app-navigation></app-navigation>
 <div class="request-container w-75">
     
-    <!-- <h3>Solicitudes radicadas</h3>
-    <div class="container-filter">
+     <h1>Maestro de solicitudes</h1>
+     <!-- <hr>
+     <hr> -->
+    <!-- <div class="container-filter">
         <form [formGroup]="frmFilter">
             <fieldset>
                 <h6>Búsqueda de solicitudes</h6>
@@ -58,10 +60,14 @@
                 </div>
             </fieldset>
         </form>
-    </div>
+    </div> -->
 
-    <div class="container-table">
-        <button class="btn-add btn-info" routerLink="/NewRequest" *ngIf="insertIsAllowed"><i
+    <div class="container-table"> 
+        <iframe 
+            width="100%" height="100%" 
+            src="https://datastudio.google.com/embed/reporting/2b1fb638-1a96-4d66-8880-79788c56fa9f/page/u8xHC" 
+            frameborder="0" style="border:0" allowfullscreen></iframe>
+        <!-- <button class="btn-add btn-info" routerLink="/NewRequest" *ngIf="insertIsAllowed"><i
                 class="fas fa-plus"></i></button>
         <table class="table table-striped">
             <thead>
@@ -72,7 +78,7 @@
                 <th>Estado secundario</th>
                 <th>Fecha de registro</th>
                 <th>Gerente de cuenta</th>
-                <th>Acciones</th>
+                
             </thead>
             <tbody>
                 <tr *ngFor="let request of lsRequest | paginate: { itemsPerPage: 5, currentPage: p }">
@@ -82,28 +88,17 @@
                     <td>{{ request.parentState.description  }}</td>
                     <td>{{ request.childState.description  }}</td>
                     <td>{{ request.registrationDate | date:'yyyy/MM/dd hh:mm:ss aa' }}</td>
-                    <td>{{ (request.user.name +' '+ request.user.lastName) | titlecase }}</td>
-                    <td>
-                        <i class="fas fa-info-circle text-info" title="Más información" *ngIf="readIsAllowed"
-                            (click)="viewRequestReview(request)"></i>
-                        <i class="fas fa-edit text-warning" title="Modificar"
-                            (click)="markRequestToEdit(request);updateModal.show()" *ngIf="updateIsAllowed"></i>
-                        <i class="fas fa-trash-alt text-danger" (click)="basicModal.show();markRequestToDelete(request)"
-                            title="Eliminar" *ngIf="deleteIsAllowed"></i>
-                    </td>
+                    <td>{{ (request.user.name +' '+ request.user.lastName) | titlecase }}</td>                  
                 </tr>
             </tbody>
            <div class="paginationContainer">
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
-           </div>
-            
-              
-            
-        </table>
-    </div> -->
+           </div>         
+        </table> -->
+    </div> 
 </div>
 
-<div mdbModal #basicModal='mdbModal' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+<!-- <div mdbModal #basicModal='mdbModal' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -122,9 +117,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<div mdbModal #updateModal='mdbModal' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+<!-- <div mdbModal #updateModal='mdbModal' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -148,11 +143,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <div *ngIf="isAwaiting" class="container-img-loading">
     <div class="divBack">
         <app-img-loading></app-img-loading>
     </div>
 </div>
-
